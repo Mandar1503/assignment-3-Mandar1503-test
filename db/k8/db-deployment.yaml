@@ -17,8 +17,17 @@ spec:
         - name: mysql-container
           image: nyuappsec/assign3-db:v0
           env:
+            - name: WEBAPP_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret-key
+                  key: webapp-secret-key
+                  
             - name: MYSQL_ROOT_PASSWORD
-              value: thisisatestthing.
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-password
+                  key: mysql-root-password
 
             - name: MYSQL_DATABASE
               value: GiftcardSiteDB
